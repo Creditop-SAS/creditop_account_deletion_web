@@ -1,8 +1,10 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:feature_auth/feature_auth.dart';
 import 'package:feature_delete_account/feature_delete_account.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../l10n/app_localizations.dart';
+import 'package:creditop_account_deletion_web/current_environment.dart';
+import 'package:creditop_account_deletion_web/l10n/app_localizations.dart';
 
 /// Rutas de la aplicación.
 abstract class AppRoutes {
@@ -12,12 +14,41 @@ abstract class AppRoutes {
   static const String dataInfo = '/informacion-datos';
   static const String deleteConfirmation = '/confirmar-eliminacion';
   static const String deleteSuccess = '/eliminacion-exitosa';
+
+  /// Rutas que requieren autenticación.
+  static const _protectedRoutes = [
+    dataInfo,
+    deleteConfirmation,
+    deleteSuccess,
+  ];
+
+  /// Verifica si la ruta requiere autenticación.
+  static bool isProtected(String location) =>
+      _protectedRoutes.any((route) => location.startsWith(route));
 }
 
 /// Crea el GoRouter de la aplicación.
 GoRouter createAppRouter() {
   return GoRouter(
     initialLocation: AppRoutes.landing,
+    redirect: (context, state) async {
+      final location = state.matchedLocation;
+
+      if (!AppRoutes.isProtected(location)) return null;
+
+      // En modo mock no validar sesión
+      if (!CurrentEnvironment.usesRealBackend) return null;
+
+      try {
+        final session = await Amplify.Auth.fetchAuthSession();
+        if (session.isSignedIn) return null;
+      } catch (_) {
+        // Sin sesión activa
+      }
+
+      // Redirigir a landing si no está autenticado
+      return AppRoutes.landing;
+    },
     routes: [
       GoRoute(
         path: AppRoutes.landing,
@@ -99,6 +130,7 @@ GoRouter createAppRouter() {
                 strings.dataInfoRetained3,
               ],
               retainedDataNote: strings.dataInfoRetainedNote,
+              activeCreditNote: strings.dataInfoActiveCreditNote,
               continueButtonLabel: strings.dataInfoContinue,
               cancelButtonLabel: strings.dataInfoCancel,
             ),
