@@ -1,4 +1,4 @@
-import 'app_environment.dart';
+import 'package:creditop_account_deletion_web/config/app_environment.dart';
 
 /// Configuración por entorno.
 abstract class EnvironmentConfig {

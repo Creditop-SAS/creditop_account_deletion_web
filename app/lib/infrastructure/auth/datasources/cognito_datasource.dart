@@ -13,7 +13,9 @@ class CognitoDatasource {
     // Cerrar sesión previa si existe
     await _ensureSignedOut();
 
-    debugPrint('[CognitoDatasource] Iniciando signIn para: $phoneNumber');
+    if (kDebugMode) {
+      debugPrint('[CognitoDatasource] Iniciando signIn para: ${_redactPhone(phoneNumber)}');
+    }
 
     return await Amplify.Auth.signIn(
       username: phoneNumber,
@@ -27,7 +29,9 @@ class CognitoDatasource {
 
   /// Confirma el código OTP ingresado por el usuario.
   Future<SignInResult> confirmSignIn(String otpCode) async {
-    debugPrint('[CognitoDatasource] Confirmando OTP');
+    if (kDebugMode) {
+      debugPrint('[CognitoDatasource] Confirmando OTP');
+    }
 
     return await Amplify.Auth.confirmSignIn(
       confirmationValue: otpCode,
@@ -54,13 +58,23 @@ class CognitoDatasource {
     try {
       final session = await Amplify.Auth.fetchAuthSession();
       if (session.isSignedIn) {
-        debugPrint('[CognitoDatasource] Cerrando sesión previa');
+        if (kDebugMode) {
+          debugPrint('[CognitoDatasource] Cerrando sesión previa');
+        }
         await Amplify.Auth.signOut();
       }
     } on SignedOutException {
       // Esperado: no hay sesión activa
     } catch (e) {
-      debugPrint('[CognitoDatasource] Error al verificar sesión: $e');
+      if (kDebugMode) {
+        debugPrint('[CognitoDatasource] Error al verificar sesión: $e');
+      }
     }
+  }
+
+  /// Redacta el número de teléfono para logging seguro.
+  static String _redactPhone(String phone) {
+    if (phone.length <= 4) return '***';
+    return '${phone.substring(0, 3)}***${phone.substring(phone.length - 4)}';
   }
 }

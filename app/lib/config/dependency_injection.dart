@@ -5,22 +5,22 @@ import 'package:dio/dio.dart';
 import 'package:feature_auth/feature_auth.dart';
 import 'package:feature_delete_account/feature_delete_account.dart';
 
-import '../current_environment.dart';
-import '../infrastructure/auth/datasources/cognito_datasource.dart';
-import '../infrastructure/auth/gateways/auth_gateway_mock.dart';
-import '../infrastructure/auth/gateways/cognito_auth_gateway_impl.dart';
-import '../infrastructure/delete_account/datasources/delete_account_datasource.dart';
-import '../infrastructure/delete_account/gateways/delete_account_gateway_impl.dart';
-import '../infrastructure/delete_account/gateways/delete_account_gateway_mock.dart';
-import 'app_environment.dart';
-import 'environment_config.dart';
+import 'package:creditop_account_deletion_web/config/app_environment.dart';
+import 'package:creditop_account_deletion_web/config/environment_config.dart';
+import 'package:creditop_account_deletion_web/current_environment.dart';
+import 'package:creditop_account_deletion_web/infrastructure/auth/datasources/cognito_datasource.dart';
+import 'package:creditop_account_deletion_web/infrastructure/auth/gateways/auth_gateway_mock.dart';
+import 'package:creditop_account_deletion_web/infrastructure/auth/gateways/cognito_auth_gateway_impl.dart';
+import 'package:creditop_account_deletion_web/infrastructure/delete_account/datasources/delete_account_datasource.dart';
+import 'package:creditop_account_deletion_web/infrastructure/delete_account/gateways/delete_account_gateway_impl.dart';
+import 'package:creditop_account_deletion_web/infrastructure/delete_account/gateways/delete_account_gateway_mock.dart';
 
 // ============================================================================
 // AUTH GATEWAY
 // ============================================================================
 
 AuthGateway createAuthGateway() {
-  final env = CurrentEnvironment.environment;
+  const env = CurrentEnvironment.environment;
   return switch (env) {
     AppEnvironment.mock => AuthGatewayMock(),
     _ => CognitoAuthGatewayImpl(CognitoDatasource()),
@@ -32,7 +32,7 @@ AuthGateway createAuthGateway() {
 // ============================================================================
 
 DeleteAccountGateway createDeleteAccountGateway() {
-  final env = CurrentEnvironment.environment;
+  const env = CurrentEnvironment.environment;
   return switch (env) {
     AppEnvironment.mock => DeleteAccountGatewayMock(),
     _ => DeleteAccountGatewayImpl(

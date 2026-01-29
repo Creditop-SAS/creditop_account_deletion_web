@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:feature_delete_account/feature_delete_account.dart';
 import 'package:flutter/foundation.dart';
 
-import '../datasources/delete_account_datasource.dart';
-import '../models/delete_account_response_dto.dart';
+import 'package:creditop_account_deletion_web/infrastructure/delete_account/datasources/delete_account_datasource.dart';
+import 'package:creditop_account_deletion_web/infrastructure/delete_account/models/delete_account_response_dto.dart';
 
 /// Implementación real del gateway de eliminación de cuenta.
 class DeleteAccountGatewayImpl implements DeleteAccountGateway {
@@ -13,39 +13,53 @@ class DeleteAccountGatewayImpl implements DeleteAccountGateway {
   final DeleteAccountDatasource _datasource;
 
   @override
-  Future<ErrorItem?> deleteAccount() async {
+  Future<(ErrorItem?, void)> deleteAccount() async {
     try {
-      debugPrint('[DeleteAccountGateway] Eliminando cuenta');
+      if (kDebugMode) {
+        debugPrint('[DeleteAccountGateway] Eliminando cuenta');
+      }
 
       final response = await _datasource.deleteAccount();
 
       if (response.data == null) {
-        return const ErrorItem(
-          code: 'null_response',
-          title: 'Error del servidor',
-          message: 'El servidor no devolvió datos.',
-          category: ErrorCategory.totalPage,
+        return (
+          const ErrorItem(
+            code: 'null_response',
+            title: 'Error del servidor',
+            message: 'El servidor no devolvió datos.',
+            category: ErrorCategory.totalPage,
+          ),
+          null,
         );
       }
 
       final dto = DeleteAccountResponseDto.fromJson(response.data!);
-      debugPrint('[DeleteAccountGateway] Response code: ${dto.code}');
-
-      if (dto.isSuccess) {
-        debugPrint('[DeleteAccountGateway] Cuenta eliminada exitosamente');
-        return null;
+      if (kDebugMode) {
+        debugPrint('[DeleteAccountGateway] Response code: ${dto.code}');
       }
 
-      return _mapErrorCode(dto);
+      if (dto.isSuccess) {
+        if (kDebugMode) {
+          debugPrint('[DeleteAccountGateway] Cuenta eliminada exitosamente');
+        }
+        return (null, null);
+      }
+
+      return (_mapErrorCode(dto), null);
     } on DioException catch (e) {
-      return _handleDioException(e);
+      return (_handleDioException(e), null);
     } catch (e) {
-      debugPrint('[DeleteAccountGateway] Error inesperado: $e');
-      return const ErrorItem(
-        code: 'unexpected',
-        title: 'Error inesperado',
-        message: 'Ocurrió un error. Intenta nuevamente.',
-        category: ErrorCategory.totalPage,
+      if (kDebugMode) {
+        debugPrint('[DeleteAccountGateway] Error inesperado: $e');
+      }
+      return (
+        const ErrorItem(
+          code: 'unexpected',
+          title: 'Error inesperado',
+          message: 'Ocurrió un error. Intenta nuevamente.',
+          category: ErrorCategory.totalPage,
+        ),
+        null,
       );
     }
   }
@@ -76,7 +90,9 @@ class DeleteAccountGatewayImpl implements DeleteAccountGateway {
   }
 
   ErrorItem _handleDioException(DioException e) {
-    debugPrint('[DeleteAccountGateway] DioException: ${e.message}');
+    if (kDebugMode) {
+      debugPrint('[DeleteAccountGateway] DioException: ${e.message}');
+    }
 
     // Intentar extraer código MOBA del response
     final responseData = e.response?.data;
@@ -103,10 +119,10 @@ class DeleteAccountGatewayImpl implements DeleteAccountGateway {
           message: 'Verifica tu conexión a internet.',
           category: ErrorCategory.totalPage,
         ),
-      _ => ErrorItem(
+      _ => const ErrorItem(
           code: 'network_error',
           title: 'Error de red',
-          message: e.message ?? 'Ocurrió un error de red.',
+          message: 'Ocurrió un error de red. Intenta nuevamente.',
           category: ErrorCategory.totalPage,
         ),
     };

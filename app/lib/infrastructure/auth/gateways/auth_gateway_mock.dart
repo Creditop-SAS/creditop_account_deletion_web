@@ -7,7 +7,9 @@ import 'package:flutter/foundation.dart';
 class AuthGatewayMock implements AuthGateway {
   @override
   Future<(ErrorItem?, void)> requestOtp(String phoneNumber) async {
-    debugPrint('[AuthGatewayMock] requestOtp: $phoneNumber');
+    if (kDebugMode) {
+      debugPrint('[AuthGatewayMock] requestOtp');
+    }
     await Future<void>.delayed(const Duration(milliseconds: 800));
 
     // Simular error para números especiales
@@ -31,7 +33,9 @@ class AuthGatewayMock implements AuthGateway {
     String phoneNumber,
     String otpCode,
   ) async {
-    debugPrint('[AuthGatewayMock] verifyOtp: $phoneNumber, code: $otpCode');
+    if (kDebugMode) {
+      debugPrint('[AuthGatewayMock] verifyOtp');
+    }
     await Future<void>.delayed(const Duration(milliseconds: 800));
 
     if (otpCode != '1234') {

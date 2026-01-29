@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:feature_auth/feature_auth.dart';
 import 'package:flutter/foundation.dart';
 
-import '../datasources/cognito_datasource.dart';
-import '../models/auth_session_dto.dart';
+import 'package:creditop_account_deletion_web/infrastructure/auth/datasources/cognito_datasource.dart';
+import 'package:creditop_account_deletion_web/infrastructure/auth/models/auth_session_dto.dart';
 
 /// Implementación real del gateway de auth usando Cognito.
 /// Solo para usuarios existentes (no registro).
@@ -16,20 +16,28 @@ class CognitoAuthGatewayImpl implements AuthGateway {
   @override
   Future<(ErrorItem?, void)> requestOtp(String phoneNumber) async {
     try {
-      debugPrint('[CognitoAuthGateway] Solicitando OTP para: $phoneNumber');
+      if (kDebugMode) {
+        debugPrint('[CognitoAuthGateway] Solicitando OTP');
+      }
 
       final result = await _datasource.signIn(phoneNumber);
 
-      debugPrint(
-        '[CognitoAuthGateway] SignIn step: ${result.nextStep.signInStep}',
-      );
+      if (kDebugMode) {
+        debugPrint(
+          '[CognitoAuthGateway] SignIn step: ${result.nextStep.signInStep}',
+        );
+      }
 
       return (null, null);
     } on AuthException catch (e) {
-      debugPrint('[CognitoAuthGateway] AuthException: ${e.message}');
+      if (kDebugMode) {
+        debugPrint('[CognitoAuthGateway] AuthException: ${e.message}');
+      }
       return (_mapAuthException(e), null);
     } catch (e) {
-      debugPrint('[CognitoAuthGateway] Error inesperado: $e');
+      if (kDebugMode) {
+        debugPrint('[CognitoAuthGateway] Error inesperado: $e');
+      }
       return (
         const ErrorItem(
           code: 'unexpected',
@@ -48,7 +56,9 @@ class CognitoAuthGatewayImpl implements AuthGateway {
     String otpCode,
   ) async {
     try {
-      debugPrint('[CognitoAuthGateway] Verificando OTP');
+      if (kDebugMode) {
+        debugPrint('[CognitoAuthGateway] Verificando OTP');
+      }
 
       final result = await _datasource.confirmSignIn(otpCode);
 
@@ -56,7 +66,9 @@ class CognitoAuthGatewayImpl implements AuthGateway {
         final cognitoSession = await _datasource.fetchAuthSession();
         final session = cognitoSession.toDomain();
 
-        debugPrint('[CognitoAuthGateway] OTP verificado exitosamente');
+        if (kDebugMode) {
+          debugPrint('[CognitoAuthGateway] OTP verificado exitosamente');
+        }
         return (
           null,
           OtpVerificationAuthenticated(session: session),
@@ -73,10 +85,14 @@ class CognitoAuthGatewayImpl implements AuthGateway {
         null,
       );
     } on AuthException catch (e) {
-      debugPrint('[CognitoAuthGateway] AuthException: ${e.message}');
+      if (kDebugMode) {
+        debugPrint('[CognitoAuthGateway] AuthException: ${e.message}');
+      }
       return (_mapAuthException(e), null);
     } catch (e) {
-      debugPrint('[CognitoAuthGateway] Error inesperado: $e');
+      if (kDebugMode) {
+        debugPrint('[CognitoAuthGateway] Error inesperado: $e');
+      }
       return (
         const ErrorItem(
           code: 'unexpected',
@@ -115,10 +131,10 @@ class CognitoAuthGatewayImpl implements AuthGateway {
           message: 'No se pudo completar la operación. Intenta nuevamente.',
           category: ErrorCategory.modal,
         ),
-      _ => ErrorItem(
+      _ => const ErrorItem(
           code: 'auth_error',
           title: 'Error de autenticación',
-          message: e.message,
+          message: 'Ocurrió un error. Intenta nuevamente.',
           category: ErrorCategory.modal,
         ),
     };

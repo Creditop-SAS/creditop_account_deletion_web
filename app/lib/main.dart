@@ -3,18 +3,19 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:cds_web/cds_web.dart';
 import 'package:feature_auth/feature_auth.dart';
 import 'package:feature_delete_account/feature_delete_account.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'config/amplify_configuration.dart';
-import 'config/dependency_injection.dart' as di;
-import 'config/environment_config.dart';
-import 'config/router/app_router.dart';
-import 'current_environment.dart';
-import 'l10n/app_localizations.dart';
+import 'package:creditop_account_deletion_web/config/amplify_configuration.dart';
+import 'package:creditop_account_deletion_web/config/dependency_injection.dart' as di;
+import 'package:creditop_account_deletion_web/config/environment_config.dart';
+import 'package:creditop_account_deletion_web/config/router/app_router.dart';
+import 'package:creditop_account_deletion_web/current_environment.dart';
+import 'package:creditop_account_deletion_web/l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,15 +29,18 @@ Future<void> main() async {
     await dotenv.load(fileName: envFileName);
   } catch (_) {
     // En modo mock, .env puede no existir
-    debugPrint('No se pudo cargar $envFileName');
+    if (kDebugMode) {
+      debugPrint('No se pudo cargar $envFileName');
+    }
   }
 
   // Configurar Amplify en modo real
   if (CurrentEnvironment.usesRealBackend) {
     await _configureAmplify();
   } else {
-    debugPrint('Modo MOCK: Amplify deshabilitado');
-    debugPrint('OTP válido para testing: 1234');
+    if (kDebugMode) {
+      debugPrint('Modo MOCK: Amplify deshabilitado');
+    }
   }
 
   // Crear router
@@ -60,11 +64,17 @@ Future<void> _configureAmplify() async {
     AmplifyConfiguration.validateConfiguration();
     await Amplify.addPlugin(AmplifyAuthCognito());
     await Amplify.configure(AmplifyConfiguration.amplifyConfig);
-    debugPrint('Amplify configurado');
+    if (kDebugMode) {
+      debugPrint('Amplify configurado');
+    }
   } on AmplifyAlreadyConfiguredException {
-    debugPrint('Amplify ya configurado');
+    if (kDebugMode) {
+      debugPrint('Amplify ya configurado');
+    }
   } catch (e) {
-    debugPrint('Error al configurar Amplify: $e');
+    if (kDebugMode) {
+      debugPrint('Error al configurar Amplify: $e');
+    }
   }
 }
 
