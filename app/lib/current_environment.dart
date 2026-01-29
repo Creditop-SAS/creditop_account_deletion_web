@@ -7,7 +7,7 @@ abstract class CurrentEnvironment {
   CurrentEnvironment._();
 
   /// Entorno activo. Cambiar aquí para alternar.
-  static const AppEnvironment environment = AppEnvironment.mock;
+  static const AppEnvironment environment = AppEnvironment.production;
 
   /// Si usa Cognito real.
   static bool get usesRealBackend => environment.usesRealBackend;
