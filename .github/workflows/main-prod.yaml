@@ -40,7 +40,7 @@ jobs:
 
       - name: Get dependencies (packages)
         run: |
-          for pkg in core cds_mobile feature_splash feature_onboarding feature_auth feature_credits feature_financial_health feature_home feature_user_profile; do
+          for pkg in core cds_web feature_auth feature_delete_account; do
             cd packages/$pkg && flutter pub get && cd ../..
           done
 
