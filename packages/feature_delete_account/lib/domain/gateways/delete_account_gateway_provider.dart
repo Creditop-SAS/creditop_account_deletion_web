@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'delete_account_gateway.dart';
+import 'package:feature_delete_account/domain/gateways/delete_account_gateway.dart';
 
 /// Placeholder provider para DeleteAccountGateway.
 final deleteAccountGatewayProvider = Provider<DeleteAccountGateway>(

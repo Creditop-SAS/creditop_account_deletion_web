@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../domain/gateways/delete_account_gateway_provider.dart';
-import 'delete_account_state.dart';
+import 'package:feature_delete_account/domain/gateways/delete_account_gateway_provider.dart';
+import 'package:feature_delete_account/presentation/providers/delete_account_state.dart';
 
 part 'delete_account_provider.g.dart';
 
@@ -14,7 +14,7 @@ class DeleteAccountNotifier extends _$DeleteAccountNotifier {
   Future<bool> deleteAccount() async {
     state = state.copyWith(isLoading: true, clearError: true);
 
-    final error = await ref.read(deleteAccountGatewayProvider).deleteAccount();
+    final (error, _) = await ref.read(deleteAccountGatewayProvider).deleteAccount();
 
     if (!ref.mounted) return false;
 
