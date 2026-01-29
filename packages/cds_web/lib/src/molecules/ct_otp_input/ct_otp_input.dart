@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../tokens/cds_border_radius.dart';
-import '../../tokens/cds_colors.dart';
-import '../../tokens/cds_spacing.dart';
-import '../../tokens/cds_typography.dart';
+import 'package:cds_web/src/tokens/cds_border_radius.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_spacing.dart';
+import 'package:cds_web/src/tokens/cds_typography.dart';
 
 /// Input OTP de 4 dígitos del Creditop Design System.
 class CtOtpInput extends StatefulWidget {
@@ -71,7 +71,7 @@ class _CtOtpInputState extends State<CtOtpInput> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(_otpLength, (index) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: CdsSpacing.sm),
+          padding: const EdgeInsets.symmetric(horizontal: CdsSpacing.sm),
           child: SizedBox(
             width: 56,
             height: 56,

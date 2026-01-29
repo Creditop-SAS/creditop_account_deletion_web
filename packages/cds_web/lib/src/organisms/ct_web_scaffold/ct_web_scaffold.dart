@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../tokens/cds_colors.dart';
-import '../../tokens/cds_shadow.dart';
-import '../../tokens/cds_spacing.dart';
-import '../../tokens/cds_typography.dart';
+import 'package:cds_web/src/tokens/cds_border_radius.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_shadow.dart';
+import 'package:cds_web/src/tokens/cds_spacing.dart';
+import 'package:cds_web/src/tokens/cds_typography.dart';
 
 /// Layout responsive centrado para web del Creditop Design System.
 ///
@@ -46,7 +48,7 @@ class CtWebScaffold extends StatelessWidget {
                     padding: const EdgeInsets.all(CdsSpacing.xl),
                     decoration: BoxDecoration(
                       color: CdsColors.neutral.shade0,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: CdsBorderRadius.borderRadiusMd,
                       boxShadow: CdsShadow.md,
                     ),
                     child: body,
@@ -65,18 +67,16 @@ class CtWebScaffold extends StatelessWidget {
   }
 
   Widget _buildLogo() {
-    return Text(
-      'Creditop',
-      style: CdsTypography.heading.small.copyWith(
-        color: CdsColors.morado.shade500,
-        letterSpacing: -0.5,
-      ),
+    return SvgPicture.asset(
+      'assets/logos/creditop_logo.svg',
+      package: 'cds_web',
+      height: 30,
     );
   }
 
   Widget _buildFooter() {
     return Text(
-      '\u00a9 2025 Creditop S.A.S. Todos los derechos reservados.',
+      '\u00a9 2026 Creditop S.A.S. Todos los derechos reservados.',
       style: CdsTypography.textTiny.normal.copyWith(
         color: CdsColors.neutral.shade500,
       ),

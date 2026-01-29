@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../tokens/cds_colors.dart';
-import '../../tokens/cds_spacing.dart';
-import '../../tokens/cds_typography.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_spacing.dart';
+import 'package:cds_web/src/tokens/cds_typography.dart';
 
 /// Sección de información de datos con icono, título y lista de items.
 class CtDataInfoSection extends StatelessWidget {
+  static const double _itemIndent = 36.0;
+
   const CtDataInfoSection({
     required this.icon,
     required this.iconColor,
@@ -40,7 +42,7 @@ class CtDataInfoSection extends StatelessWidget {
         ...items.map(
           (item) => Padding(
             padding: const EdgeInsets.only(
-              left: 36,
+              left: _itemIndent,
               bottom: CdsSpacing.sm,
             ),
             child: Row(

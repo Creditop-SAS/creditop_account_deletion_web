@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
 
 /// Loader circular del Creditop Design System.
 class CtLoader extends StatelessWidget {

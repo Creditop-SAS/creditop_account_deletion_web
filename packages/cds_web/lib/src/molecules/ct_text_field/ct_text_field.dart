@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../tokens/cds_border_radius.dart';
-import '../../tokens/cds_colors.dart';
-import '../../tokens/cds_spacing.dart';
-import '../../tokens/cds_typography.dart';
+import 'package:cds_web/src/tokens/cds_border_radius.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_spacing.dart';
+import 'package:cds_web/src/tokens/cds_typography.dart';
 
 /// Text field del Creditop Design System para web.
 class CtTextField extends StatelessWidget {

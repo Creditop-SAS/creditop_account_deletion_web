@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../tokens/cds_border_radius.dart';
-import '../../tokens/cds_colors.dart';
-import '../../tokens/cds_spacing.dart';
-import '../../tokens/cds_typography.dart';
-import '../../atoms/ct_button/ct_button.dart';
+import 'package:cds_web/src/tokens/cds_border_radius.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_spacing.dart';
+import 'package:cds_web/src/tokens/cds_typography.dart';
+import 'package:cds_web/src/atoms/ct_button/ct_button.dart';
 
 /// Modal de error/confirmación del Creditop Design System.
 class CtErrorModal extends StatelessWidget {
@@ -64,7 +64,8 @@ class CtErrorModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
+      backgroundColor: CdsColors.neutral.shade0,
+      shape: const RoundedRectangleBorder(
         borderRadius: CdsBorderRadius.borderRadiusMd,
       ),
       child: Container(

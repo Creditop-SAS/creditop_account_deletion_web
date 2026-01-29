@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import 'error_category.dart';
+import 'package:core/src/errors/error_category.dart';
 
 /// Entidad central de errores para toda la aplicación.
 @immutable

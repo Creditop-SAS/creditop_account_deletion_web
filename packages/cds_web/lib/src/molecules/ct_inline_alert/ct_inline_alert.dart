@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../tokens/cds_border_radius.dart';
-import '../../tokens/cds_colors.dart';
-import '../../tokens/cds_spacing.dart';
-import '../../tokens/cds_typography.dart';
+import 'package:cds_web/src/tokens/cds_border_radius.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_spacing.dart';
+import 'package:cds_web/src/tokens/cds_typography.dart';
 
 /// Tipo de alerta inline.
-enum CtInlineAlertType { info, warning, error, success }
+enum CtInlineAlertType { info, warning, error, success, neutral }
 
 /// Banner de alerta inline del Creditop Design System.
 class CtInlineAlert extends StatelessWidget {
@@ -58,6 +58,7 @@ class CtInlineAlert extends StatelessWidget {
         CtInlineAlertType.warning => CdsColors.naranja.shade50,
         CtInlineAlertType.error => CdsColors.rojo.shade50,
         CtInlineAlertType.success => CdsColors.verde.shade50,
+        CtInlineAlertType.neutral => CdsColors.neutral.shade100,
       };
 
   Color get _borderColor => switch (type) {
@@ -65,6 +66,7 @@ class CtInlineAlert extends StatelessWidget {
         CtInlineAlertType.warning => CdsColors.naranja.shade200,
         CtInlineAlertType.error => CdsColors.rojo.shade200,
         CtInlineAlertType.success => CdsColors.verde.shade200,
+        CtInlineAlertType.neutral => CdsColors.neutral.shade300,
       };
 
   Color get _iconColor => switch (type) {
@@ -72,6 +74,7 @@ class CtInlineAlert extends StatelessWidget {
         CtInlineAlertType.warning => CdsColors.naranja.shade600,
         CtInlineAlertType.error => CdsColors.rojo.shade600,
         CtInlineAlertType.success => CdsColors.verde.shade600,
+        CtInlineAlertType.neutral => CdsColors.neutral.shade600,
       };
 
   Color get _textColor => switch (type) {
@@ -79,6 +82,7 @@ class CtInlineAlert extends StatelessWidget {
         CtInlineAlertType.warning => CdsColors.naranja.shade800,
         CtInlineAlertType.error => CdsColors.rojo.shade800,
         CtInlineAlertType.success => CdsColors.verde.shade800,
+        CtInlineAlertType.neutral => CdsColors.neutral.shade700,
       };
 
   IconData get _defaultIcon => switch (type) {
@@ -86,5 +90,6 @@ class CtInlineAlert extends StatelessWidget {
         CtInlineAlertType.warning => Icons.warning_amber_rounded,
         CtInlineAlertType.error => Icons.error_outline,
         CtInlineAlertType.success => Icons.check_circle_outline,
+        CtInlineAlertType.neutral => Icons.info_outline,
       };
 }

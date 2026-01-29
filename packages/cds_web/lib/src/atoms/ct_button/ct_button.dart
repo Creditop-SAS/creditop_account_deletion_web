@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../tokens/cds_border_radius.dart';
-import '../../tokens/cds_colors.dart';
-import '../../tokens/cds_spacing.dart';
-import '../../tokens/cds_typography.dart';
+import 'package:cds_web/src/tokens/cds_border_radius.dart';
+import 'package:cds_web/src/tokens/cds_colors.dart';
+import 'package:cds_web/src/tokens/cds_spacing.dart';
+import 'package:cds_web/src/tokens/cds_typography.dart';
 
 /// Variantes de botón del CDS.
 enum CtButtonVariant { primary, secondary, ghost, destructive }
@@ -52,7 +52,7 @@ class CtButton extends StatelessWidget {
             backgroundColor: CdsColors.morado.shade500,
             foregroundColor: CdsColors.neutral.shade0,
             disabledBackgroundColor: CdsColors.morado.shade200,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: CdsBorderRadius.borderRadiusSm,
             ),
             padding: const EdgeInsets.symmetric(horizontal: CdsSpacing.xl),
@@ -70,7 +70,7 @@ class CtButton extends StatelessWidget {
         CtButtonVariant.ghost => ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
             foregroundColor: CdsColors.morado.shade500,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: CdsBorderRadius.borderRadiusSm,
             ),
             padding: const EdgeInsets.symmetric(horizontal: CdsSpacing.xl),
@@ -81,7 +81,7 @@ class CtButton extends StatelessWidget {
             backgroundColor: CdsColors.rojo.shade500,
             foregroundColor: CdsColors.neutral.shade0,
             disabledBackgroundColor: CdsColors.rojo.shade200,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: CdsBorderRadius.borderRadiusSm,
             ),
             padding: const EdgeInsets.symmetric(horizontal: CdsSpacing.xl),

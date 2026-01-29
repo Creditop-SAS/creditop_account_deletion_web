@@ -29,7 +29,7 @@ class HeadingTextStyles {
   TextStyle get medium => const TextStyle(
     fontFamily: CdsTypography.fontFamily, fontSize: 32, fontWeight: FontWeight.w700, height: 1.3,
   );
-  TextStyle get mmall => const TextStyle(
+  TextStyle get msmall => const TextStyle(
     fontFamily: CdsTypography.fontFamily, fontSize: 28, fontWeight: FontWeight.w700, height: 1.4,
   );
   TextStyle get small => const TextStyle(
