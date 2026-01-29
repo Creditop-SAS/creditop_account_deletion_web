@@ -50,7 +50,7 @@ jobs:
 
       - name: Generate code (packages)
         run: |
-          for pkg in core cds_mobile feature_auth feature_credits feature_financial_health feature_home feature_splash feature_onboarding feature_user_profile; do
+          for pkg in core cds_web feature_auth feature_delete_account; do
             cd packages/$pkg
             if grep -q "build_runner" pubspec.yaml; then
               flutter pub run build_runner build --delete-conflicting-outputs
