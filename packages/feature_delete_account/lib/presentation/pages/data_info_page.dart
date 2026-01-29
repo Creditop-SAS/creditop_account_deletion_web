@@ -1,7 +1,7 @@
 import 'package:cds_web/cds_web.dart';
 import 'package:flutter/material.dart';
 
-import '../models/data_info_strings.dart';
+import 'package:feature_delete_account/presentation/models/data_info_strings.dart';
 
 /// Página de información de datos - qué se elimina vs qué se conserva.
 class DataInfoPage extends StatelessWidget {
@@ -46,6 +46,11 @@ class DataInfoPage extends StatelessWidget {
           CtInlineAlert(
             message: strings.retainedDataNote,
             type: CtInlineAlertType.info,
+          ),
+          const SizedBox(height: CdsSpacing.md),
+          CtInlineAlert(
+            message: strings.activeCreditNote,
+            type: CtInlineAlertType.warning,
           ),
           const SizedBox(height: CdsSpacing.xl),
           CtButton(

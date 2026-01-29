@@ -7,6 +7,7 @@ class DataInfoStrings {
     required this.retainedDataTitle,
     required this.retainedDataItems,
     required this.retainedDataNote,
+    required this.activeCreditNote,
     required this.continueButtonLabel,
     required this.cancelButtonLabel,
   });
@@ -17,6 +18,7 @@ class DataInfoStrings {
   final String retainedDataTitle;
   final List<String> retainedDataItems;
   final String retainedDataNote;
+  final String activeCreditNote;
   final String continueButtonLabel;
   final String cancelButtonLabel;
 }

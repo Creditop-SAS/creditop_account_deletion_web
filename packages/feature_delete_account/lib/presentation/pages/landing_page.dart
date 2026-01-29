@@ -1,7 +1,8 @@
 import 'package:cds_web/cds_web.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../models/landing_strings.dart';
+import 'package:feature_delete_account/presentation/models/landing_strings.dart';
 
 /// Página de landing - info de Creditop y proceso de eliminación.
 class LandingPage extends StatelessWidget {
@@ -46,7 +47,10 @@ class LandingPage extends StatelessWidget {
           const SizedBox(height: CdsSpacing.lg),
           Center(
             child: TextButton(
-              onPressed: () {},
+              onPressed: () => launchUrl(
+                Uri.parse('https://creditop.com/aviso-de-privacidad'),
+                mode: LaunchMode.externalApplication,
+              ),
               child: Text(
                 strings.privacyPolicyLabel,
                 style: CdsTypography.textSmall.medium.copyWith(
@@ -85,7 +89,7 @@ class LandingPage extends StatelessWidget {
           const SizedBox(width: CdsSpacing.md),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: CdsSpacing.micro),
               child: Text(
                 text,
                 style: CdsTypography.textSmall.normal.copyWith(

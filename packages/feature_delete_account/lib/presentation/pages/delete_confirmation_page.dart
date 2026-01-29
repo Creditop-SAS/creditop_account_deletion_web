@@ -2,8 +2,8 @@ import 'package:cds_web/cds_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/delete_confirmation_strings.dart';
-import '../providers/delete_account_provider.dart';
+import 'package:feature_delete_account/presentation/models/delete_confirmation_strings.dart';
+import 'package:feature_delete_account/presentation/providers/delete_account_provider.dart';
 
 /// Página de confirmación de eliminación de cuenta.
 class DeleteConfirmationPage extends ConsumerWidget {

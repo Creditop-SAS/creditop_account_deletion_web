@@ -1,7 +1,7 @@
 import 'package:cds_web/cds_web.dart';
 import 'package:flutter/material.dart';
 
-import '../models/delete_success_strings.dart';
+import 'package:feature_delete_account/presentation/models/delete_success_strings.dart';
 
 /// Página de eliminación exitosa.
 class DeleteSuccessPage extends StatelessWidget {

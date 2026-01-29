@@ -116,6 +116,9 @@ class AppLocalizations {
   String get dataInfoRetainedNote => _isEs
       ? 'Por regulación de la Superintendencia Financiera de Colombia, ciertos datos deben conservarse por un período mínimo de 10 años.'
       : 'By regulation of the Colombian Financial Superintendency, certain data must be retained for a minimum period of 10 years.';
+  String get dataInfoActiveCreditNote => _isEs
+      ? 'Si tienes créditos activos con Creditop, tu cuenta no podrá ser eliminada hasta que el crédito sea saldado en su totalidad.'
+      : 'If you have active loans with Creditop, your account cannot be deleted until the loan is fully paid off.';
   String get dataInfoContinue => _isEs
       ? 'Continuar con la eliminación'
       : 'Continue with deletion';
