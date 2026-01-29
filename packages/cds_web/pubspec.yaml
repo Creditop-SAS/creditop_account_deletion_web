@@ -1,0 +1,24 @@
+name: cds_web
+description: Creditop Design System for Web
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: Satoshi
+      fonts:
+        - asset: lib/fonts/Satoshi-Light.otf
+          weight: 300
+        - asset: lib/fonts/Satoshi-Normal.otf
+          weight: 400
+        - asset: lib/fonts/Satoshi-Medium.otf
+          weight: 500
+        - asset: lib/fonts/Satoshi-Bold.otf
+          weight: 700

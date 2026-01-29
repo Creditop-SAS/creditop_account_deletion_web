@@ -1,0 +1,11 @@
+{
+  "name": "Creditop - Eliminar Cuenta",
+  "short_name": "Creditop",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F5F5F5",
+  "theme_color": "#4C39FF",
+  "description": "Solicita la eliminación de tu cuenta Creditop",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false
+}

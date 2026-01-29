@@ -1,0 +1,12 @@
+name: core
+description: Core utilities for Creditop Account Deletion Web
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^5.9.0
