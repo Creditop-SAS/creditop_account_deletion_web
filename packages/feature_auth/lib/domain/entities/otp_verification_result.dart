@@ -1,4 +1,4 @@
-import 'auth_session.dart';
+import 'package:feature_auth/domain/entities/auth_session.dart';
 
 /// Resultado de la verificación de OTP.
 sealed class OtpVerificationResult {

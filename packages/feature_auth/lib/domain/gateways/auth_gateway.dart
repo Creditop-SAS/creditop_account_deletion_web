@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 
-import '../entities/otp_verification_result.dart';
+import 'package:feature_auth/domain/entities/otp_verification_result.dart';
 
 /// Gateway para operaciones de autenticación con Cognito Custom Auth + OTP.
 abstract class AuthGateway {

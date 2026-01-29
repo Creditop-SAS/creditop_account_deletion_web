@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../domain/entities/auth_session.dart';
+import 'package:feature_auth/domain/entities/auth_session.dart';
 
 /// Estado de la página de verificación OTP.
 @immutable

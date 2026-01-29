@@ -2,8 +2,8 @@ import 'package:cds_web/cds_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/otp_verification_strings.dart';
-import '../providers/otp_verification_provider.dart';
+import 'package:feature_auth/presentation/models/otp_verification_strings.dart';
+import 'package:feature_auth/presentation/providers/otp_verification_provider.dart';
 
 /// Página de verificación OTP.
 class OtpVerificationPage extends ConsumerWidget {

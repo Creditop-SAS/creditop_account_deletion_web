@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../domain/entities/otp_verification_result.dart';
-import '../../domain/gateways/auth_gateway_provider.dart';
-import 'otp_verification_state.dart';
+import 'package:feature_auth/domain/entities/otp_verification_result.dart';
+import 'package:feature_auth/domain/gateways/auth_gateway_provider.dart';
+import 'package:feature_auth/presentation/providers/otp_verification_state.dart';
 
 part 'otp_verification_provider.g.dart';
 

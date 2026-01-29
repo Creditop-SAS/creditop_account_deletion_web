@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/phone_input_strings.dart';
-import '../providers/phone_input_provider.dart';
+import 'package:feature_auth/presentation/models/phone_input_strings.dart';
+import 'package:feature_auth/presentation/providers/phone_input_provider.dart';
 
 /// Página de input de teléfono para verificación de identidad.
 class PhoneInputPage extends ConsumerStatefulWidget {
@@ -57,6 +57,7 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
             label: widget.strings.phoneLabel,
             hint: widget.strings.phoneHint,
             prefix: widget.strings.phonePrefix,
+            autofocus: true,
             errorText: state.phoneError != null
                 ? widget.strings.invalidPhoneError
                 : null,

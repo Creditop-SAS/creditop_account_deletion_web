@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../domain/gateways/auth_gateway_provider.dart';
-import 'phone_input_state.dart';
+import 'package:feature_auth/domain/gateways/auth_gateway_provider.dart';
+import 'package:feature_auth/presentation/providers/phone_input_state.dart';
 
 part 'phone_input_provider.g.dart';
 
